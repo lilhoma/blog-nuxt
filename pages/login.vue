@@ -39,12 +39,17 @@
 </template>
 
 <script setup>
+definePageMeta({
+    middleware: ['guest'] // or middleware: 'guest'
+})
+
 const title = useState('title');
 const email = ref('');
 const password = ref('');
 const isLoading = ref(false);
 const errors = ref([]);
 const router = useRouter();
+
 
 
 const { $apiFetch } = useNuxtApp()
@@ -65,6 +70,11 @@ async function login() {
         password: password.value,
       },
     })
+    const user = await $apiFetch('/api/user');
+
+    const { setUser } = useAuth();
+    setUser(user.name);
+    
     window.location.pathname = '/my-info'
   } catch (err) {
     console.log(err.data)

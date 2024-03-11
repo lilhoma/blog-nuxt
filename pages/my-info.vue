@@ -22,6 +22,11 @@
 </template>
 
 <script setup>
+definePageMeta({
+    middleware: ['auth'] // or middleware: 'auth'
+})
+
+
     const title = useState('title');
     const { $apiFetch } = useNuxtApp();
     const user = ref(null);

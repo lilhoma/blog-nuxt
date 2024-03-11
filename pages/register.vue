@@ -65,6 +65,9 @@
   
 
 <script setup>
+definePageMeta({
+    middleware: ['guest'] // or middleware: 'guest'
+})
 
 const title = useState('title');
 
@@ -98,8 +101,14 @@ async function register() {
       },
     })
 
+    const user = await $apiFetch('/api/user');
+
+    const { setUser } = useAuth();
+    setUser(user.name);
+
     alert('Registered!');
     window.location.pathname = '/my-info'
+
   } catch (err) {
     console.log(err.data)
     errors.value = Object.values(err.data.errors).flat()
