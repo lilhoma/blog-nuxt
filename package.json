@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.4.4",
     "date-fns": "^3.3.1",
+    "js-cookie": "^3.0.5",
     "nuxt": "^3.10.3",
     "vue": "^3.4.19",
     "vue-router": "^4.3.0"
